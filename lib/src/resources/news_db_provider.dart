@@ -25,7 +25,19 @@ class NewsDbProvider {
         newDb.execute("""
           CREATE TABLE Items
             (
-            
+              id INTEGER PRIMARY KEY,
+              type TEXT,
+              by TEXT,
+              time INTEGER,
+              text TEXT,
+              parent INTEGER,
+              kids BLOB,
+              dead INTEGER,
+              deleted INTEGER,
+              url TEXT,
+              score INTEGER,
+              title TEXT,
+              descendants INTEGER
             )
         """); // arbitrary line of sql to be executed
       },

@@ -22,8 +22,13 @@ class NewsDbProvider {
       path,
       version: 1, // schema versions for migrations
       onCreate: (Database newDb, int version) { // only called if db is being created
-
-      }
+        newDb.execute("""
+          CREATE TABLE Items
+            (
+            
+            )
+        """); // arbitrary line of sql to be executed
+      },
     );
   }
 }

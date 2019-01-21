@@ -60,4 +60,8 @@ class NewsDbProvider {
 
     return null;
   }
+
+  addItem(ItemModel item) { // don't need to mark async
+    return db.insert("Items", item.toDbMap()); // not waiting for db result/error
+  }
 }

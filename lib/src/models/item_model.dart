@@ -46,4 +46,23 @@ class ItemModel {
     score = dbMap['score'],
     title = dbMap['title'],
     descendants = dbMap['descendants'];
+
+  Map<String, dynamic> toDbMap() {
+    // convert ItemModel to dbMap
+    return <String, dynamic> {
+      "id": id,
+      "type": type,
+      "by": by,
+      "time": time,
+      "text": text,
+      "parent": parent,
+      "url": url,
+      "score": score,
+      "title": title,
+      "descendants": descendants,
+      "dead": dead ? 1 : 0,
+      "deleted": deleted ? 1 : 0,
+      "kids": jsonEncode(kids),
+    };
+  }
 }

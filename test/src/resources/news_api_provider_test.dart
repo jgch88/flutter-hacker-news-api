@@ -9,7 +9,12 @@ import 'package:http/testing.dart';
 void main() {
   test('FetchTopIds returns a list of ids', () {
     // setup of test case
-    final sum = 1+3;
+    final newsApi = NewsApiProvider();
+    // generally mock a http request (if the api goes down, tests fail. also slow. also, they may change the API.)
+    MockClient((request) {
+      // returns when a legitimate request is sent
+
+    });
 
     // expectation
     expect(sum, 4);

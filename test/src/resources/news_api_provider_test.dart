@@ -7,16 +7,19 @@ import 'package:http/http.dart';
 import 'package:http/testing.dart';
 
 void main() {
-  test('FetchTopIds returns a list of ids', () {
+  test('FetchTopIds returns a list of ids', () async {
     // setup of test case
     final newsApi = NewsApiProvider();
     // generally mock a http request (if the api goes down, tests fail. also slow. also, they may change the API.)
-    MockClient((request) {
-      // returns when a legitimate request is sent
 
+    // overwrite the actual client
+    newsApi.client = MockClient((request) async {
+      // returns when a legitimate request is sent
+      return Response(json.encode([1, 2, 3, 4]), 200);
     });
 
     // expectation
-    expect(sum, 4);
+    final ids = await newsApi.fetchTopIds();
+    expect(ids, [1,2,3,4]);
   });
 }

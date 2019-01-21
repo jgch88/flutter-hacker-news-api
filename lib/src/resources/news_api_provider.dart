@@ -13,7 +13,7 @@ class NewsApiProvider {
     final response = await client.get('$_root/topstories.json');
     final ids = json.decode(response.body);
 
-    return ids;
+    return ids.cast<int>(); // casting a List<dynamic> to List<int> so tests pass
   }
 
   Future<ItemModel> fetchItem(int id) async {

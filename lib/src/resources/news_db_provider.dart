@@ -43,4 +43,20 @@ class NewsDbProvider {
       },
     );
   }
+
+  fetchItem(int id) async {
+    // maps has a type Map<String, dynamic>
+    final maps = await db.query(
+      "Items", // Table name
+      columns: null, // can specify columns, or do null (like select *)
+      where: "id = ?",
+      whereArgs: [id], // prevents SQL injection, via sanitisation
+    );
+
+    if (maps.length > 0) {
+      return maps;
+    }
+
+    return null;
+  }
 }

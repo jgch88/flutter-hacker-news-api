@@ -54,7 +54,8 @@ class NewsDbProvider {
     );
 
     if (maps.length > 0) {
-      return maps;
+      // need to convert map into a ItemModel, but it is not the same as JSON
+      return ItemModel.fromDb(maps.first); // fetching only one item!
     }
 
     return null;

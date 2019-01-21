@@ -5,3 +5,13 @@ import 'package:path/path.dart';
 import 'dart:async';
 import '../models/item_model.dart';
 
+class NewsDbProvider {
+  Database db; // link to sqflite database
+
+
+  // can't use this logic in constructors because you can't do async code
+  // in constructors
+  init() async {
+    
+  }
+}

@@ -10,7 +10,7 @@ class NewsDbProvider {
 
   // can't use this logic in constructors because you can't do async code
   // in constructors
-  init() async {
+  void init() async {
     // returns a directory where you can safely store stuff permanently
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     // actual path
@@ -44,7 +44,7 @@ class NewsDbProvider {
     );
   }
 
-  fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     // maps has a type Map<String, dynamic>
     final maps = await db.query(
       "Items", // Table name
@@ -61,7 +61,7 @@ class NewsDbProvider {
     return null;
   }
 
-  addItem(ItemModel item) { // don't need to mark async
+  Future<int> addItem(ItemModel item) { // don't need to mark async
     return db.insert("Items", item.toDbMap()); // not waiting for db result/error
   }
 }

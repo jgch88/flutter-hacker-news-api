@@ -9,11 +9,11 @@ class Repository {
   NewsApiProvider apiProvider = NewsApiProvider();
   // remember to init() dbProvider! constructor not sufficient
 
-  fetchTopIds() {
+  Future<List<int>> fetchTopIds() {
     return apiProvider.fetchTopIds(); // not caching top ids, just one network call
   }
 
-  fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     // check dbProvider first
     var item = await dbProvider.fetchItem(id);
     if (item != null) {

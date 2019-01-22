@@ -9,10 +9,6 @@ class NewsList extends StatelessWidget {
     // crawls up to tree to get reference
     // to the bloc
 
-    // Don't do this -> we're going to keep rerendering/building
-    // For testing
-    bloc.fetchTopIds();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),

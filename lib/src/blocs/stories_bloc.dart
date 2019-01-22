@@ -3,10 +3,20 @@ import '../models/item_model.dart';
 import '../resources/repository.dart';
 
 class StoriesBloc {
+  // Repository passes the info to the StoriesBloc
+  final _repository = Repository();
   final _topIds = PublishSubject<List<int>>(); // similar to StreamController
 
   // Getters to streams
   Observable<List<int>> get topIds => _topIds.stream;
+
+  // hide the sink, we don't want it publicly available
+  // since the only thing that needs access to it is the repository
+  fetchTopIds() async {
+    final ids = await _repository.fetchTopIds();
+    _topIds.sink.add(ids);
+  }
+
 
   dispose() {
     _topIds.close();

@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'screens/news_list.dart';
 import 'blocs/stories_provider.dart';
 import 'screens/news_detail.dart';
+import 'blocs/comments_provider.dart';
 
 class App extends StatelessWidget {
   Widget build(context) {
-    return StoriesProvider(
-      child: MaterialApp(
-        title: 'News!',
-        onGenerateRoute: routes,
+
+    return CommentsProvider(
+      child:StoriesProvider(
+        child: MaterialApp(
+          title: 'News!',
+          onGenerateRoute: routes,
+        ),
       ),
     );
-
   }
 
   Route routes(RouteSettings settings) {
@@ -29,6 +32,9 @@ class App extends StatelessWidget {
           // pass into NewsDetail
           // good place to do some initialization // data fetching
           final itemId = int.parse(settings.name.replaceFirst('/', ''));
+
+          final commentsBloc = CommentsProvider.of(context);
+          commentsBloc.fetchItemWithComments(itemId);
 
           return NewsDetail(
             itemId: itemId,

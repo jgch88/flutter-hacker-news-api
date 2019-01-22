@@ -27,10 +27,11 @@ class CommentsBloc {
       (cache, int id, index) {
         cache[id] = _repository.fetchItem(id);
         cache[id].then((ItemModel item) {
-          item.kids.forEach((kidId) => {
-            fetchItemWithComments(kidId);
-          });
+          item.kids.forEach((kidId) =>
+            fetchItemWithComments(kidId)
+          );
         });
+        return cache;
       },
       <int, Future<ItemModel>>{}
     );

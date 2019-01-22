@@ -73,8 +73,14 @@ class NewsDbProvider implements Source, Cache {
     return null;
   }
 
+  // getting an error when we take it out the db and immediately try to add it back
+  // see repository's fetchItem(). requires app reload to see it throw error
   Future<int> addItem(ItemModel item) { // don't need to mark async
-    return db.insert("Items", item.toDbMap()); // not waiting for db result/error
+    return db.insert(
+        "Items",
+        item.toDbMap(),
+        conflictAlgorithm: ConflictAlgorithm.ignore,
+    ); // not waiting for db result/error
   }
 }
 

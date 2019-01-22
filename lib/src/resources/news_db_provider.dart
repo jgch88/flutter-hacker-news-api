@@ -4,9 +4,15 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../models/item_model.dart';
+import 'repository.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source {
   Database db; // link to sqflite database
+
+  Future<List<int>> fetchTopIds() {
+    // not implemented - cache will need to know when to refresh its cache
+    return null;
+  }
 
   // can't use this logic in constructors because you can't do async code
   // in constructors

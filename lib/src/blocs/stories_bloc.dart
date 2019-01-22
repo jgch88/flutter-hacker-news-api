@@ -34,6 +34,7 @@ class StoriesBloc {
       // cache is this Map that is persisted
       (Map<int, Future<ItemModel>> cache, int id, _count) {
         cache[id] = _repository.fetchItem(id);
+        print(_count);
         return cache; // cache is like an accumulator, maybe this is a reducer
       },
       <int, Future<ItemModel>>{},

@@ -16,6 +16,10 @@ class Repository {
     NewsApiProvider(),
   ];
 
+  List<Cache> caches = <Cache> [
+    NewsDbProvider(),
+  ];
+
   NewsDbProvider dbProvider = NewsDbProvider();
   NewsApiProvider apiProvider = NewsApiProvider();
   // remember to init() dbProvider! constructor not sufficient
@@ -25,16 +29,18 @@ class Repository {
   }
 
   Future<ItemModel> fetchItem(int id) async {
-    // check dbProvider first
-    var item = await dbProvider.fetchItem(id);
-    if (item != null) {
-      return item;
+    ItemModel item;
+
+    for (var source in sources) {
+      item = await source.fetchItem(id);
+      if (item != null) {
+        break;
+      }
     }
 
-    // didn't find it in db, use apiProvider
-    item = await apiProvider.fetchItem(id);
-    // store it for future use
-    dbProvider.addItem(item);
+    for (var cache in caches) {
+      cache.addItem(item);
+    }
 
     return item;
   }

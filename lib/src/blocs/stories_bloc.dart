@@ -1,6 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import '../models/item_model.dart';
 import '../resources/repository.dart';
+import 'dart:async';
 
 class StoriesBloc {
   // Repository passes the info to the StoriesBloc
@@ -17,6 +18,16 @@ class StoriesBloc {
     _topIds.sink.add(ids);
   }
 
+  // turn Future<ItemModel> into a Map of these emitted events
+  _itemsTransformer() {
+    return ScanStreamTransformer(
+      // cache is this Map that is persisted
+      (Map<int, Future<ItemModel>> cache, int id, _count) {
+        
+      },
+      <int, Future<ItemModel>>{},
+    );
+  }
 
   dispose() {
     _topIds.close();

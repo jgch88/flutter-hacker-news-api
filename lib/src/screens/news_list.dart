@@ -26,7 +26,7 @@ class NewsList extends StatelessWidget {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
-          )
+          );
         }
 
         return ListView.builder(

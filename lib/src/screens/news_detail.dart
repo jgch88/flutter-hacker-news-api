@@ -54,6 +54,7 @@ class NewsDetail extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      alignment: Alignment.topCenter, // override container wrapping title tightly
     );
   }
 }

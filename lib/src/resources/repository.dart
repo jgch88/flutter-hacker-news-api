@@ -5,6 +5,17 @@ import 'dart:async';
 
 // governs access to our providers
 class Repository {
+  // Refactoring so that we don't use concrete implementations anymore,
+  // We can use any type of provider that's a <Source>, create any type
+  // of provider that may implements the <Source> interface
+  // This List is created so we can define some logic to use our Sources -
+  // in this example we're just going down the list and taking the first
+  // Source that can return us a result.
+  List<Source> sources = <Source>[
+    NewsDbProvider(),
+    NewsApiProvider(),
+  ];
+
   NewsDbProvider dbProvider = NewsDbProvider();
   NewsApiProvider apiProvider = NewsApiProvider();
   // remember to init() dbProvider! constructor not sufficient

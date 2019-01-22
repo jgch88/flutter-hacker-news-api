@@ -9,6 +9,12 @@ import 'repository.dart';
 class NewsDbProvider implements Source, Cache {
   Database db; // link to sqflite database
 
+  // because we cannot call init on the instance outside,
+  // we place it in the constructor
+  NewsDbProvider() {
+    init();
+  }
+
   Future<List<int>> fetchTopIds() {
     // not implemented - cache will need to know when to refresh its cache
     return null;

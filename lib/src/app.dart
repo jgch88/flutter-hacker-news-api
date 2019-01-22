@@ -28,7 +28,11 @@ class App extends StatelessWidget {
           // extract item id from settings.name
           // pass into NewsDetail
           // good place to do some initialization // data fetching
-          return NewsDetail();
+          final itemId = int.parse(settings.name.replaceFirst('/', ''));
+
+          return NewsDetail(
+            itemId: itemId,
+          );
         }
       );
     }

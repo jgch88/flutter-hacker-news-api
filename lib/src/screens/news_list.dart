@@ -7,11 +7,33 @@ class NewsList extends StatelessWidget {
     // crawls up to tree to get reference
     // to the bloc
 
+    // Don't do this -> we're going to keep rerendering/building
+    // For testing
+    bloc.fetchTopIds();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
       ),
-      body: Text('Show List'),
+      body: buildList(bloc),
+    );
+  }
+
+  Widget buildList(StoriesBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.topIds,
+      builder: (context, AsyncSnapshot<List<int>> snapshot) {
+        if (!snapshot.hasData) {
+          return Text('Still waiting for Ids');
+        }
+
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, int index) {
+            return Text('${snapshot.data[index]}');
+          }
+        );
+      },
     );
   }
 }

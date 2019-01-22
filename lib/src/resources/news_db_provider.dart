@@ -26,7 +26,7 @@ class NewsDbProvider implements Source, Cache {
     // returns a directory where you can safely store stuff permanently
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     // actual path
-    final path = join(documentsDirectory.path, "items.db");
+    final path = join(documentsDirectory.path, "items1.db");
 
     // if user is opening the app for the first time, they do not have a db
     // openDatabase tries to find an existing db OR create a new db

@@ -28,6 +28,10 @@ class StoriesBloc {
     _topIds.sink.add(ids);
   }
 
+  clearCache() {
+    return _repository.clearCache();
+  }
+
   // turn Future<ItemModel> into a Map of these emitted events
   _itemsTransformer() {
     return ScanStreamTransformer(

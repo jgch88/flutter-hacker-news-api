@@ -12,12 +12,12 @@ class Repository {
   // in this example we're just going down the list and taking the first
   // Source that can return us a result.
   List<Source> sources = <Source>[
-    NewsDbProvider(),
+    newsDbProvider,
     NewsApiProvider(),
   ];
 
   List<Cache> caches = <Cache> [
-    NewsDbProvider(),
+    newsDbProvider,
   ];
 
   NewsDbProvider dbProvider = NewsDbProvider();

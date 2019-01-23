@@ -31,7 +31,7 @@ class CommentsBloc {
   // the bloc class and just expose a simpler api to the widgets
 
   // Type annotations on getters:
-  // 1. For the streams, we're returning an Observable containing Map type events (the stream itself)
+  // 1. For the streams, we're returning an Observable stream containing Map type events (the stream itself)
   Observable<Map<int, Future<ItemModel>>> get itemWithComments =>
     _commentsOutput.stream;
 

@@ -18,6 +18,7 @@ class StoriesBloc {
   Function(int) get fetchItem => _itemsFetcher.sink.add;
 
   StoriesBloc() {
+    // constructor initialization
     _itemsFetcher.stream.transform(_itemsTransformer()).pipe(_itemsOutput);
   }
 

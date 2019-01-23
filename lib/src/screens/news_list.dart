@@ -17,6 +17,14 @@ class NewsList extends StatelessWidget {
     );
   }
 
+  /*
+  StreamBuilder only needs to consume from a stream.
+  It doesn't care about the sink. The StoriesSink was kickstarted
+  in App.Routes() via storiesBloc.fetchTopIds().
+
+  The topIds stream is exposed by storiesBloc for the StreamBuilder to
+  consume.
+  */
   Widget buildList(StoriesBloc bloc) {
     return StreamBuilder(
       stream: bloc.topIds,

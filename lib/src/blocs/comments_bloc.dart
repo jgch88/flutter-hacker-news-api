@@ -24,17 +24,27 @@ class CommentsBloc {
   final _commentsOutput = BehaviorSubject<Map<int, Future<ItemModel>>>();
 
   // Streams
+
+  // "getters" are used to simplify access to our StreamControllers
+  // so that we don't have to write bloc.controller.stream
+  // or bloc.controller.stream.add i.e. we want to hide the internal implementation of
+  // the bloc class and just expose a simpler api to the widgets
+
+  // Type annotations on getters:
+  // 1. For the streams, we're returning an Observable containing Map type events (the stream itself)
   Observable<Map<int, Future<ItemModel>>> get itemWithComments =>
     _commentsOutput.stream;
 
   // Sink
+  // 2. For the sinks, we're returning a function (the add function) that accepts
+  // integers.
   Function(int) get fetchItemWithComments =>
     _commentsFetcher.sink.add;
 
   CommentsBloc() {
     _commentsFetcher.stream
         .transform(_commentsTransformer())
-        .pipe(_commentsOutput);
+        .pipe(_commentsOutput); // same as _commentsOutput.addStream(_commentsFetcher)?
   }
 
   // https://pub.dartlang.org/documentation/rxdart/latest/rx/ScanStreamTransformer-class.html

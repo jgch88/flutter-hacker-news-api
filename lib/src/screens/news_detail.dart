@@ -37,7 +37,7 @@ class NewsDetail extends StatelessWidget {
               return Text('Loading');
             }
 
-            return buildList(itemSnapshot.data, snapshot.data); // render title And list of items
+            return buildList(itemSnapshot.data, snapshot.data); // render title And list of top row comments
           },
         );
       },

@@ -31,6 +31,7 @@ class Comment extends StatelessWidget {
           Divider(),
         ];
 
+        // not sure why forEach here when map() is used in news_detail.dart
         item.kids.forEach((kidId) {
           children.add(
             Comment(

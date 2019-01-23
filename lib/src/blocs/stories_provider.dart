@@ -29,6 +29,8 @@ export 'stories_bloc.dart'; // so that we don't have to keep importing both prov
 //
 // Note: The of(context) method should be called only in build(context) methods
 // of child widgets
+// Note: This of(context) method is static, so doesn't require instantiation
+// when imported by child widgets
 //
 // Note: The Providers are Singletons and are instantiated only once, and they
 // are at the root of the app, encapsulating even MaterialApp(). This ensures
